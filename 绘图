@@ -1,0 +1,143 @@
+绘图R 包：
+数据处理包：dplyr、tidyr、reshape2、tidyverse
+tidyverse：readr：
+          tidyr：整理数据
+dplyr：数据转换
+ggplot2：
+purrr：函数式编程
+tibble、stringr、forcats
+ggrepel包：添加标签
+scales包、tibble、tidyselect包
+patchwork包：拼图
+knitr和pandoc包：将原始Rmarkdown转换成html和pdf
+ggvis包    可交互和动态
+交互式图形软件包：GGobi(通过rggobi包连接)
+extrafont包：用于字体
+showtext包：以图片的形式将字体插入到ggplot2绘制的图标中
+ggThemeAssist包
+R语言主题模板包：ggthemes、ggtech、ggthemer、ggsci、cowplot
+esquisse包 ——ggplot2在rstudio中交互操作
+ColorBrewer包：对于类别型的点：Set1、Dark2
+               对于类别型的面积：Set2、Pastel1、Pastel2、Accent
+RColorBrewer包：单色系(sequential)、多色系(qualitative)、双色渐变系(diverging)     
+
+directlabels包：绘制标签        http://directlabels.r-forge.r-project.org/
+ggplot(mpg,aes(displ,hwy,colour = class)) +
+  geom_point(show.legend = FALSE) +
+  directlabels::geom_dl(aes(label=class),method = "smart.grid")
+
+
+绘图教程：
+https://cran.r-project.org/web/views/Graphics.html    R绘图系统描述
+r graphics cookbook   直接看在线版
+
+
+基础图形系统：graphics
+网格图形系统：grid
+栅栏图形系统：trellis/lattice
+
+
+htmlwidgets  —— 在此基础上的包：leaflet(地图)、dygraph(时间序列)、networkD3(网络)
+
+
+
+
+处理字体：
+https://github.com/yixuan/showtext   把所有字体视为多边形处理，是的图形设备成为独立图像
+https://github.com/wch/extrafont    把字体转换为所有设备通用的标准格式
+以上两种各有优缺点
+
+字体以mm为单位，1英寸=72.27pts(英镑)，将pt换算成mm，只需乘72.27/25.4
+
+
+标度变换——统计变换——坐标变换
+
+
+ggplot(mpg, aes(trans,cty)) +
+  geom_point() +
+  geom_point(stat = "summary",fun = "mean",colour = "red",size =4)
+
+
+stat:
+stat_bin()：geom_bar()、geom_freqpoly、geom_histogram()
+stat_bin2d()：geom_bin2d()
+stat_bindot()：geom_dotplot()
+stat_binhex()：geom_hex()
+stat_boxplot()：geom_boxplot()
+stat_contour()：geom_contour()
+stat_quantile()：geom_quantile()
+stat_smooth()：geom_smooth()
+stat_sum()：geom_count()
+
+
+不能用geom函数创建的统计变换：
+stat_ecdf()：计算经验累积分布图
+stat_function()：通过定义于x值上的函数来计算y值
+stat_summary()：在不同的x值上概述y值
+stat_summary2d()、stat_summary_hex()：概述封箱数据
+stat_qq()：展示Q-Q图的计算
+stat_spoke()：将角和半径转化为位置
+stat_unique()：去掉重复的行
+
+
+labs(x = "X axis",y = "Y axis",colour = "Colour\nlegend")  #colour修改图例名
+
+
+HCL色彩空间：
+1、色相(hue):0和360之间的(角度)值，将一种色彩赋以“颜色”属性，如蓝、红、橙等
+2、彩度(chroma)：色彩的纯度。彩度为0是灰色，彩度的最大值随明度的变化而不同
+3、明度(luminance)：颜色的明暗程度。明度的高低，要看其接近白色或黑色的程度而定。明度为0为黑，明度为1为白
+
+               
+ggplot(huron,aes(year)) +
+  geom_line(aes(y = level + 5,colour = "above")) +
+  geom_line(aes(y = level - 5,colour = "below")) +
+  scale_colour_manual("Direction",values = c("above" = "red","below" = "blue"))    #把图例标题名改为"Direction";above图例对应颜色改为red；below图例对应颜色改为blue
+
+
+http://adv-r.had.co.nz/Functions.html      function函数
+http://adv-r.had.co.nz/Functional-programming.html   函数式编程
+
+
+fun.data   四个选项：mean_cl_boot、mean_cl_normal、mean_sdl、median_hilow
+
+
+ppt演示：theme_gray和theme_bw
+学术论文：theme_test和theme_classic
+
+
+位置调整参数：
+1、position_dodge()：用于簇状柱形图、箱型图等
+2、position_identity()
+3、position_stack()
+4、position_fill()
+5、position_jitter()：用于散点图
+ggplot(df,aes(x=x,y=y,fill = as.factor(group))) +
+  geom_boxplot(position = position_dodge(1),outlier.size = 0,colour = "black") +
+  geom_jitter(shape = 21,alpha = 0.5,position = position_jitterdodge(dodge.width = 1))
+6、position_jitterdodge()   :仅用于箱型图和散点图在一起的情形，必须箱型图层在前，散点在后，抖动只能在散点几何对象
+ggplot(df,aes(x=x,y=y,fill = as.factor(group))) +
+  geom_boxplot(outlier.size = 0,colour = "black") +
+  geom_jitter(shape = 21,alpha = 0.5,position = position_jitterdodge())
+7、position_nudge()
+
+
+
+
+
+
+颜色主题：
+1、R语言自带5个预色调色板：grDevices包
+rainbow
+heat.colors
+terrain.colors
+topo.colors
+cm.colors
+
+2、grDevices包：
+colorRampPalette(c("red","white","green"),alpha = TRUE)(10)
+
+3、wesanderson包：wes_palette("Royal1")
+viridis包：scale_fill_viridis(option="magma",discrete=TRUE)  #T为离散颜色值，F为连续颜色值
+ggthemes包、ggtech包、
+ggsci包：pal_npg("nrc",alpha = 0.7)(9)
