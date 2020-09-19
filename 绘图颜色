@@ -1,1 +1,2 @@
 scales::show_col()    #显示颜色
+ggsci包               #配色
