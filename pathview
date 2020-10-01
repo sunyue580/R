@@ -1,0 +1,33 @@
+library(clusterProfiler)
+rt <- read.table('../DE_logFC.txt',header = T)
+
+rt2 <- bitr(rt$Gene_Name,fromType = "SYMBOL",toType = "ENTREZID",OrgDb="org.Mm.eg.db")
+
+rt3 <- dplyr::inner_join(rt2,rt,by = c("SYMBOL" = "Gene_Name"))
+
+genelist <- rt3$log2FC 
+names(genelist) <- rt3$ENTREZID
+max(genelist) #2.843048
+min(genelist) #-3.910924
+
+
+kegg <- enrichKEGG(rt2$ENTREZID,organism = "mmu",pvalueCutoff = 1,qvalueCutoff = 1)
+
+y <- setReadable(kegg, OrgDb = org.Mm.eg.db, keyType="ENTREZID")
+
+kk <- data.frame(y)
+kk[kk$Description == "Parkinson disease",]
+
+library("pathview")
+
+mmu05012 <- pathview(gene.data  = genelist,
+                     pathway.id = "mmu05012",
+                     species    = "mmu",
+                     limit      = list(gene=max(abs(genelist)), cpd=1))
+
+mmu05012 <- pathview(gene.data  = genelist,
+                     pathway.id = "mmu05012",
+                     species    = "mmu",
+                     limit      = list(gene=max(abs(genelist)), cpd=1),
+                     same.layer = F,
+                     out.suffix = "layer")
