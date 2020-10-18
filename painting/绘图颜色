@@ -1,2 +1,5 @@
 scales::show_col()    #显示颜色
 ggsci包               #配色
+paletteer包           #整合25个不同配色包;
+                       提供1000多种色盘
+                       支持ggplot2
