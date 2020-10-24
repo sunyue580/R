@@ -5,3 +5,5 @@ ggsave("go_kegg_scatter.pdf",width = 12,height = 10)
 dev.off()
 
 2、customLayout包：绘图布局
+
+3、ggplotify::as.ggplot()
