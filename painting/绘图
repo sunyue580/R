@@ -1,5 +1,6 @@
 绘图R 包：
 转换其他图形为ggplot格式：ggplotify
+读取和处理多种格式的图片：magick
 数据处理包：dplyr、tidyr、reshape2、tidyverse
 tidyverse：readr：
           tidyr：整理数据
