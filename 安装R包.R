@@ -1,3 +1,4 @@
+#############################################################################安装github上的包#################################################################
 #github上下载yulab.utils-master.zip
 devtools::install_local("C:\\Users\\think\\Desktop\\yulab.utils-master.zip")
 library(yulab.utils)
@@ -16,3 +17,10 @@ install_zip_gh("yulab-smu/ggtree")
                 或
                 git config --global https.proxy http://127.0.0.1:1080
 然后重新安装：devtools::install_github("zzwch/crosslinks")
+
+
+
+#############################################################################安装cran上的包#################################################################
+rforge <- "http://r-forge.r-project.org"
+install.packages("estimate", repos=rforge, dependencies=TRUE)
+
