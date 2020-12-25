@@ -3,7 +3,10 @@ ggsci包               #配色
 paletteer包           #整合25个不同配色包;
                        提供1000多种色盘
                        支持ggplot2
+RColorBrewer包                      
 
 生成连续性颜色：
 colorRampPalette(c("#282B71","white","#CF2221"))(100)
 NMF:::ccRamp(c("#282B71","white","#CF2221"),100)
+
+ 
