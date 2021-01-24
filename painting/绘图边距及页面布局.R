@@ -1,4 +1,4 @@
-####一、绘图及边距区域设置
+####一、绘图边距设置
 #外边距 margin设置 ，下左上右 ；mai(英寸边距)
 par(oma=c(3,3,3,3)) 
 #内边距 margin设置   下左上右       omi(英寸边距)
@@ -17,7 +17,7 @@ box("figure",lty="solid",col="green")
 mtext("外边距",side=1,line=1,cex=2,col="blue",outer=TRUE,adj=0)
 box("outer",col="blue")
 
-####二、页面图形布局
+####二、页面布局
 ##1)par 参数
 par(mfrow=c(2,2)) #将画布分割为2*2格局
 par(mfrow=c(3,1))# 将画布分割为3行，1列格局
