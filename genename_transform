@@ -1,4 +1,8 @@
+##1、org.Hs.eg.db包
 library(org.Hs.eg.db)
 k=keys(org.Hs.eg.db,keytype = "ENSEMBL")
 head(k,5)
 list=select(org.Hs.eg.db,keys=k,columns = c("ENTREZID","SYMBOL"), keytype="ENSEMBL")
+
+##2、biomaRt包
+详细见已总结好的biomaRt.R
