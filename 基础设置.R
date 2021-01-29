@@ -7,3 +7,6 @@ Sys.setlocale("LC_ALL","Chinese")
 
 # 释放内存
 gc() 
+
+#获取.Renviron路径
+Sys.getenv("HOME")
