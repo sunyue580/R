@@ -7,6 +7,12 @@ library(stringr)
 ##提取三个基因
 #读取文件
 rt <- read.table("HTSeq - FPKM-UQ.merge.txt",header = T)
+##HTSeq - FPKM-UQ.merge.txt文件格式如下
+#Tags	               TCGA-BP-5195-01	  TCGA-AK-3451-01	  TCGA-A3-3319-01
+#ENSG00000242268.2	 1940.85016515	    2127.56903962	    9613.13457756
+#ENSG00000270112.3	 0.0	              0.0	              0.0
+#ENSG00000167578.15	 45676.7772549	    143882.462992	    59856.0694203
+
 #把基因名.后面的版本号去掉用于后续转换基因名
 rt$Tags <- sapply(strsplit(rt$Tags,"\\."),"[",1)
 
