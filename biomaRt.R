@@ -59,3 +59,19 @@ ensembl = useEnsembl(biomart="ensembl", dataset="hsapiens_gene_ensembl")
 hgnc_swissprot <- getBM(attributes=c('ensembl_gene_id','ensembl_transcript_id','hgnc_symbol','uniprotswissprot'),filters = 'ensembl_gene_id', values = 'ENSG00000139618', mart = ensembl)
 hgnc_swissprot
 
+#####植物基因名
+#在ensemble plants上能看到所有已提交的物种信息
+ensembl = useMart(biomart = "plants_mart",host = "http://plants.ensembl.org")
+#查看ensemble plants都有哪些物种信息，并设置为该物种信息。
+dataset <- listDatasets(mart = ensembl)
+head(dataset)
+grep("Sorghum",dataset$description)
+dataset[74,]
+ensembl = useMart(biomart = "plants_mart",host = "http://plants.ensembl.org",dataset="sbicolor_eg_gene")
+#查看该dataset上都有哪些属性，方便后面做添加
+attributes <- listAttributes(ensembl)
+genes <- getBM(attributes =c("entrezgene_id",'external_gene_name',"description"),mart = ensembl)
+
+
+
+
