@@ -13,3 +13,7 @@ Sys.getenv("HOME")
 
 #设置R语言默认浏览器
 options(browser = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe")
+
+#保存的图片上能显示中文
+library(showtext)
+showtext_auto(enable=T)
