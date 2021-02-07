@@ -7,3 +7,11 @@ for (i in seq(1,192,4)) {
 x <- c("GSE123_a","GSE1234_b","GSE12345_c")
 x <- strsplit(x,"_")
 y <- sapply(x,"[",1) #提取列表第1个元素
+
+3、读取gtf注释文件;获得protein_coding gene的gene_id跟gene symbol的对应关系
+gtf_v22 <- rtracklayer::import("gencode.v22.annotation.gtf")
+gtf_v22 <- as.data.frame(gtf_v22)
+gtf_v22 <- dplyr::select(gtf_v22, c("gene_id", "gene_type", "gene_name")) %>% 
+  filter(., gene_type ==  "protein_coding") %>% 
+  unique()
+gtf_v22 <- gtf_v22[!duplicated(gtf_v22), ]
