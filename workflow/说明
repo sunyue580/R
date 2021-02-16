@@ -1,1 +1,2 @@
 data1: tcga联合three gene+clinical(单和多因素cox+gene中位数分组的生存分析+ROC+ROC_cutoff分组的生存分析+组间比较）
+data2：批量下载表达矩阵，批量统计每个数据信息，每个数据单独输出到一个csv文件
