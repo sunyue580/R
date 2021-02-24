@@ -17,3 +17,7 @@ options(browser = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe")
 #保存的图片上能显示中文
 library(showtext)
 showtext_auto(enable=T)
+
+#读取文件
+readr::read_csv
+data.table::fread
