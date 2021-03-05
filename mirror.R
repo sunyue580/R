@@ -5,3 +5,6 @@ options(repos="https://mirrors.tongji.edu.cn/CRAN/")
 #设置bioconductor镜像
 options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 #options(BioC_mirror="https://mirrors.ustc.edu.cn/bioc/")
+
+#获取所有cran镜像：
+getCRANmirrors()
