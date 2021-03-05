@@ -21,3 +21,7 @@ showtext_auto(enable=T)
 #读取文件
 readr::read_csv
 data.table::fread
+
+#查看软件安装路径
+Sys.which('R')
+Sys.which('python')
