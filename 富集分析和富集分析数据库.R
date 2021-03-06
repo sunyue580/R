@@ -132,6 +132,17 @@ head(x)
 y <- gseMeSH(geneList, MeSHDb = "MeSH.Hsa.eg.db", database = 'gene2pubmed', category = "G")
 head(y)
 
+##MSigdDB数据库富集分析
+library(msigdbr)
+library(clusterProfiler)
+m_t2g <- msigdbr(species = "Homo sapiens",category = "C6") %>% 
+  dplyr::select(gs_name,entrez_gene)
+#ORA
+x <- enricher(gene,TERM2GENE = m_t2g)
+#GSEA
+y <- GSEA(geneList,TERM2GENE = m_t2g)
+
+
 ######################################2、富集分析数据库
 ##KEGG数据库
 library(KEGGREST)
