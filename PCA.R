@@ -85,7 +85,16 @@ summary(pca)
 screeplot(pca, type='lines')
 biplot(pca)
 
-
+pc=loadings(pca)
+comp.1 <- pca$loadings[,1]
+comp.2 <- pca$loadings[,2]
+par(mar=c(4,6,2,2))
+plot(comp.1,comp.2,pch=16,col=c("red","red","green","green"))
+text(comp.1[1],comp.2[1],"WT1")
+text(comp.1[2],comp.2[2],"WT2")
+text(comp.1[3],comp.2[3],"KD-tet1-1")
+text(comp.1[4],comp.2[4],"KD-tet1-2")
+    
 
 ####第4种PCA——gmodels包的fast.prcomp函数
 library(gmodels)
