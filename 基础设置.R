@@ -24,6 +24,9 @@ showtext_auto(enable=T)
 (3)
 library(readxl)
 rt <- read_excel("canaan-air.soil temp.xlsx",sheet=1)
+(4)
+library(openxlsx)
+rt1 <- read.xlsx(xlsxFile ="data.xlsx",sheet = 1, fillMergedCells = TRUE, colNames = T)
 
 #查看软件安装路径
 Sys.which('R')
