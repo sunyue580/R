@@ -19,8 +19,11 @@ library(showtext)
 showtext_auto(enable=T)
 
 #读取文件
-readr::read_csv
-data.table::fread
+(1) readr::read_csv
+(2) data.table::fread
+(3)
+library(readxl)
+rt <- read_excel("canaan-air.soil temp.xlsx",sheet=1)
 
 #查看软件安装路径
 Sys.which('R')
