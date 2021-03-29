@@ -8,5 +8,5 @@ RColorBrewer包
 生成连续性颜色：
 colorRampPalette(c("#282B71","white","#CF2221"))(100)
 NMF:::ccRamp(c("#282B71","white","#CF2221"),100)
-
+gplots::colorpanel(1000,"blue","white","red")
  
