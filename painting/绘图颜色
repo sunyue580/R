@@ -10,3 +10,14 @@ colorRampPalette(c("#282B71","white","#CF2221"))(100)
 NMF:::ccRamp(c("#282B71","white","#CF2221"),100)
 gplots::colorpanel(1000,"blue","white","red")
  
+pheatmap颜色设置：
+bk <- c(seq(-2,-0.1,by=0.01),seq(0,2,by=0.01))
+pheatmap(heatmap_AveE,cluster_cols = F,cluster_rows = F,show_colnames=F,show_rownames=T,
+                border=F,#border_color = "white",
+                color = c(colorRampPalette(colors = c("#2166ac","#f7fbff"))(length(bk)/2),
+                          colorRampPalette(colors = c("#f7fbff","#b2182b"))(length(bk)/2)),
+                breaks=bk,scale="row",legend_breaks=seq(-2,2,2),
+                gaps_row = gaps_row,gaps_col = gaps_col,
+                annotation_row = annotation_row,annotation_col = annotation_col,
+                annotation_colors = annotation_colors,
+                annotation_names_row = F,annotation_names_col = T)
