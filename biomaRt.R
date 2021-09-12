@@ -54,6 +54,25 @@ genes <- getBM(attributes=c('ensembl_gene_id',
 genes <- genes[genes$chromosome_name %in% c(seq(1,22,1),"X","Y"),]
 dim(genes) #231944      6
 
+##注释NM、NR开头的基因名
+#NM
+ensembl = useMart(biomart="ensembl",dataset="hsapiens_gene_ensembl")
+searchDatasets(mart = ensembl, pattern = "hsapiens")
+refseqids = c("NM_005359","NM_000546")
+ipro = getBM(attributes=c("refseq_mrna","hgnc_symbol"), 
+             filters="refseq_mrna",
+             values=refseqids, 
+             mart=ensembl)
+listAttributes <- listAttributes(mart = ensembl)
+index <- grep("refseq",listAttributes$name)
+listAttributes[index,]
+#NR
+refseqids = c("NR_036215","NR_026927","NR_015434")
+ipro = getBM(attributes=c("refseq_ncrna","hgnc_symbol"), 
+             filters="refseq_ncrna",
+             values=refseqids, 
+             mart=ensembl)
+
 ##过滤某个基因
 ensembl = useEnsembl(biomart="ensembl", dataset="hsapiens_gene_ensembl")
 hgnc_swissprot <- getBM(attributes=c('ensembl_gene_id','ensembl_transcript_id','hgnc_symbol','uniprotswissprot'),filters = 'ensembl_gene_id', values = 'ENSG00000139618', mart = ensembl)
